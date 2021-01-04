@@ -7,7 +7,7 @@ export default {
       summary: "Get All Examples",
       tags: [],
       description: "Gets a list of all examples.",
-      'x-controller': "Example",
+      'x-controller': "example",
       responses: {
         '200': {
           description: "Successful response - returns an array of `Examples` entities.",

@@ -1,10 +1,6 @@
 # API Server
 
-This server uses webpack to allow modular development. To run open 2 terminals. First execute the following to run the webpack build that will watch for changes
-
-`yarn build:dev`
-
-Next run the following to start the dev server based on the build
+This server uses webpack to allow modular development. To run open 2 terminals. Execute the following to start the dev server based on the dev build
 
 `yarn dev`
 

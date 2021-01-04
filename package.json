@@ -6,15 +6,18 @@
   "author": "Christopher Dimoulis",
   "license": "MIT",
   "scripts": {
-    "build:dev": "webpack --mode development --watch",
-    "create:migration": "knex migrate:make",
-    "create:seed": "knex seed:make",
+    "build:dev": "webpack --config webpack.dev.config.js --mode development --watch",
+    "create:migration": "source .env && knex --knexfile ./src/config/db/knexfile.js migrate:make",
+    "create:seed": "source .env && knex --knexfile ./src/config/db/knexfile.js seed:make",
+    "db:create": "source .env && node ./src/config/db/create-db.js",
+    "db:drop": "source .env && node ./src/config/db/drop-db.js",
     "db:help": "knex --help",
-    "db:migrate": "knex migrate:latest",
-    "db:seed": "knex seed:run",
-    "db:status": "knex migrate:status",
-    "db:rollback": "knex migrate:rollback",
-    "dev": "nodemon -r dotenv/config dist/index.js",
+    "db:migrate": "source .env && knex --knexfile ./src/config/db/knexfile.js migrate:latest",
+    "db:seed": "source .env && knex --knexfile ./src/config/db/knexfile.js seed:run",
+    "db:status": "source .env && knex --knexfile ./src/config/db/knexfile.js migrate:status",
+    "db:rollback": "source .env && knex --knexfile ./src/config/db/knexfile.js migrate:rollback",
+    "dev": "source .env && yarn build:dev",
+    "prod:db:migrate": "knex --knexfile ./src/config/db/knexfile.js migrate:latest",
     "start": "yarn dev"
   },
   "dependencies": {
@@ -28,8 +31,8 @@
     "uuid": "~8.3.1"
   },
   "devDependencies": {
-    "dotenv": "~8.2.0",
     "nodemon": "~2.0.6",
+    "nodemon-webpack-plugin": "^4.3.2",
     "webpack": "~5.10.3",
     "webpack-cli": "~4.2.0",
     "webpack-node-externals": "~2.5.2"

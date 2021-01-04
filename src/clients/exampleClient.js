@@ -1,8 +1,7 @@
-import { v4 as uuid } from 'uuid'
-import dbClient from '../config/db-client'
+import db from '../config/db'
 
 export default {
   getExamples: async () => {
-    return await dbClient('examples')
+    return await db('examples')
   }
 }

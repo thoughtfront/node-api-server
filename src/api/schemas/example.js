@@ -2,7 +2,7 @@ export default {
   title: "",
   type: "object",
   properties: {
-    blockId: {
+    id: {
       type: "string",
       format: "uuid"
     },
