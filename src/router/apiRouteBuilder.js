@@ -11,8 +11,10 @@ export default (() => {
     if (!info.operationId) throw new Error(`${path}: operationId required.`)
     if (!info['x-controller']) throw new Error(`${path}: x-controller required.`)
     
-    if (!controllers[info['x-controller']])
-      throw new Error(`controller ${info['x-controller']} could not be found.`)
+    if (!controllers[info['x-controller']]) {
+      const msg = `controller ${info['x-controller']} could not be found.`
+      throw new Error(msg)
+    }
     else
       controller = controllers[info['x-controller']]
     
@@ -22,8 +24,9 @@ export default (() => {
     
     const endPoint = path.replace(/{/g, ':').replace(/}/g, '')
     
-    router[method](endPoint, (...args) => {
-      action(...args)
+    router[method](endPoint, (req, res, next) => {
+      if (req.method === "GET" || req.method === "DELETE") action(req, res, next, { ...req.query, ...req.params })
+      else action(req, res, next, req.body, { ...req.query, ...req.params })
     })
   }
   
