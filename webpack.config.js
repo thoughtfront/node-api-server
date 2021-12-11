@@ -8,5 +8,10 @@ module.exports = {
     filename: 'index.js'
   },
   target: 'node',
-  externals: [nodeExternals()]
+  externals: [nodeExternals()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src/')
+    }
+  }
 }

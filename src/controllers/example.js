@@ -9,7 +9,4 @@ export default {
       next(error)
     }
   },
-  postExample: async(req, res, next, body, params) {
-    
-  }
 }

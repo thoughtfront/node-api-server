@@ -1,5 +1,5 @@
 import express from 'express'
-import * as controllers from '../controllers'
+import * as controllers from '@/controllers'
 
 export default (() => {
   const router = express.Router()

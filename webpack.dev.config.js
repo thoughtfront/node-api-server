@@ -6,11 +6,27 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js'
+    filename: 'index.js',
+    sourceMapFilename: 'index.js.map'
   },
   target: 'node',
   plugins: [
     new NodemonPlugin()
   ],
-  externals: [nodeExternals()]
+  externals: [nodeExternals()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src/')
+    }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: 'source-map-loader',
+        enforce: 'pre'
+      }
+    ]
+  },
+  devtool: 'eval'
 }
